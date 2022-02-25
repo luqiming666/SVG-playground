@@ -85,7 +85,7 @@ theCircle.addEventListener("mouseup", mouseup_circle)
 ////////////////////////////////////////////////////////////////////////////////////////
 class BezierController {
   constructor() {
-    this.order      = 0;
+    this.order = 0;
     this.startPoint = [0, 0];
     this.endPoint   = [1, 1];
   }
@@ -136,7 +136,7 @@ class BezierController {
       const [ x, y ] = this.getCoord(i*step);
       pathStr += ' L' + x + ' ' + y;
     }
-    pathStr = pathStr + ' L' + this.endPoint[0] + ' ' + this.endPoint[1]
+    pathStr = pathStr + ' L' + this.endPoint[0] + ' ' + this.endPoint[1];
     return pathStr;
   }
 }
