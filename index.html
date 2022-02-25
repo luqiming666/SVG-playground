@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link href="./styles.css" rel="stylesheet">
+    <title>DEMO</title>
+  </head>
+  <body>
+    <div id='wrapper' width='100%' height='100%'>
+      <svg id='svg-root' xmlns="http://www.w3.org/2000/svg" width='700' height='480'>
+        <line x1='0' y1='0' x2='700' y2='0' stroke='red'/>
+        <line x1='0' y1='0' x2='0' y2='480' stroke='red'/>
+        <line x1='0' y1='250' x2='700' y2='250' stroke='black' stroke-dasharray='10'/>
+        <text x='0' y='265' stroke='brown' font-size='12'>坐标轴</text>
+
+        <circle id='s-circle' cx='10' cy='10' r='10' fill ='pink'></circle>
+        <ellipse cx='100' cy='50' rx='60' ry='30' stroke='chocolate' stroke-width='2' fill='DarkBlue'/>
+        <image x='160' y='80' xlink:href='icedpanda.png'></image>
+
+        <rect x='0' y='150' width='30' height='100' rx='10' ry='10' fill='blue'/>
+        <polyline points='50,250 60,150 70,130 100,250' fill='green'/>
+        <path d='M120 250 L130 100 L150 200 L200 250Z'/>
+
+        <!-- cubic bezier curve -->
+        <path id='s-bezier3' d='' stroke='Indigo' fill='transparent'/>
+        <circle cx='300' cy='250' r='3' fill ='Indigo'></circle>
+        <circle id='s-b3-point1' cx='350' cy='80' r='6' fill ='green'></circle>
+        <circle id='s-b3-point2' cx='400' cy='100' r='6' fill ='green'></circle>
+
+        <!-- square bezier curve -->
+        <path id='s-bezier2' d='' stroke='Indigo' fill='transparent'/>
+        <circle cx='450' cy='150' r='3' fill ='Indigo'></circle>
+        <circle id='s-b2-point' cx='500' cy='200' r='6' fill ='green'></circle>
+
+      </svg>
+    </div>
+
+    <h1>Some text below the SVG picture.</h1>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+  </body>
+</html>
