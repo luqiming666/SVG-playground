@@ -15,8 +15,7 @@ console.log('renderer.js starts...')
 // Hook the mousemove event on the root container, and route it the sub-element
 //  which is being dragged, in case that the sub-element may lose tracking of
 //  the mousemove event.
-function mousemove_svg_container(e) {
-  console.log('mousemove_svg_container')
+function mousemoveForSvgContainer(e) {
   if (theCircleHelper.isDragging()) {
     theCircleHelper.mousemove(e)
   }
@@ -31,16 +30,16 @@ function mousemove_svg_container(e) {
   }
 }
 let svgRoot = document.getElementById("svg-root")
-svgRoot.addEventListener("mousemove", mousemove_svg_container)
+svgRoot.addEventListener("mousemove", mousemoveForSvgContainer)
 ///////////////////////////////////////////////////////////////////////////////
 
 class PointerMoveHelper {
-  constructor(tag) {
+  constructor(nodeTag) {
     this.mousePos = {x:0, y:0}
     this.offsetX = 0
     this.offsetY = 0
     this.dragging = false
-    this.thePointer = document.getElementById(tag)
+    this.thePointer = document.getElementById(nodeTag)
   }
 
   mousedown(e) {
@@ -65,21 +64,21 @@ class PointerMoveHelper {
   }
 }
 
-function mousedown_circle(e) {
+function mousedownForCircle(e) {
   theCircleHelper.mousedown(e)
 }
-function mouseup_circle(e) {
+function mouseupForCircle(e) {
   theCircleHelper.mouseup(e)
 }
-function mousemove_circle(e) {
+function mousemoveForCircle(e) {
   theCircleHelper.mousemove(e)
 }
 
 let theCircle = document.getElementById("s-circle")
 let theCircleHelper = new PointerMoveHelper("s-circle")
-theCircle.addEventListener("mousedown", mousedown_circle)
-theCircle.addEventListener("mousemove", mousemove_circle)
-theCircle.addEventListener("mouseup", mouseup_circle)
+theCircle.addEventListener("mousedown", mousedownForCircle)
+theCircle.addEventListener("mousemove", mousemoveForCircle)
+theCircle.addEventListener("mouseup", mouseupForCircle)
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -133,7 +132,7 @@ class BezierController {
     let step = 1.0/pointCnt;
     let pathStr = 'M' + this.startPoint[0] + ' ' + this.startPoint[1];
     for (let i = 0; i < pointCnt; i++) {
-      const [ x, y ] = this.getCoord(i*step);
+      const [x, y] = this.getCoord(i * step);
       pathStr += ' L' + x + ' ' + y;
     }
     pathStr = pathStr + ' L' + this.endPoint[0] + ' ' + this.endPoint[1];
@@ -153,13 +152,13 @@ const pointCnt = 50; // the precision of the curve
 document.getElementById("s-bezier3").setAttribute('d', bezierMgr.makeSVGPath(pointCnt))
 
 // Reply to the dragging of the 1st point
-function mousedown_b3p1(e) {
+function mousedownForB3p1(e) {
   theB3P1Helper.mousedown(e)
 }
-function mouseup_b3p1(e) {
+function mouseupForB3p1(e) {
   theB3P1Helper.mouseup(e)
 }
-function mousemove_b3p1(e) {
+function mousemoveForB3p1(e) {
   theB3P1Helper.mousemove(e)
 
   if (theB3P1Helper.isDragging()) {
@@ -170,19 +169,19 @@ function mousemove_b3p1(e) {
 
 let theB3Point1= document.getElementById("s-b3-point1")
 let theB3P1Helper = new PointerMoveHelper("s-b3-point1")
-theB3Point1.addEventListener("mousedown", mousedown_b3p1)
-theB3Point1.addEventListener("mousemove", mousemove_b3p1)
-theB3Point1.addEventListener("mouseup", mouseup_b3p1)
+theB3Point1.addEventListener("mousedown", mousedownForB3p1)
+theB3Point1.addEventListener("mousemove", mousemoveForB3p1)
+theB3Point1.addEventListener("mouseup", mouseupForB3p1)
 
 
 // Reply to the dragging of the 2nd point
-function mousedown_b3p2(e) {
+function mousedownForB3p2(e) {
   theB3P2Helper.mousedown(e)
 }
-function mouseup_b3p2(e) {
+function mouseupForB3p2(e) {
   theB3P2Helper.mouseup(e)
 }
-function mousemove_b3p2(e) {
+function mousemoveForB3p2(e) {
   theB3P2Helper.mousemove(e)
 
   if (theB3P2Helper.isDragging()) {
@@ -193,9 +192,9 @@ function mousemove_b3p2(e) {
 
 let theB3Point2= document.getElementById("s-b3-point2")
 let theB3P2Helper = new PointerMoveHelper("s-b3-point2")
-theB3Point2.addEventListener("mousedown", mousedown_b3p2)
-theB3Point2.addEventListener("mousemove", mousemove_b3p2)
-theB3Point2.addEventListener("mouseup", mouseup_b3p2)
+theB3Point2.addEventListener("mousedown", mousedownForB3p2)
+theB3Point2.addEventListener("mousemove", mousemoveForB3p2)
+theB3Point2.addEventListener("mouseup", mouseupForB3p2)
 
 
 // Test 2 - square bezier curve
@@ -209,13 +208,13 @@ const pointCnt2 = 50; // the precision of the curve
 document.getElementById("s-bezier2").setAttribute('d', bezierMgr2.makeSVGPath(pointCnt2))
 
 // Reply to the dragging of the controlling point
-function mousedown_b2p(e) {
+function mousedownForB2p(e) {
   theB2PointHelper.mousedown(e)
 }
-function mouseup_b2p(e) {
+function mouseupForB2p(e) {
   theB2PointHelper.mouseup(e)
 }
-function mousemove_b2p(e) {
+function mousemoveForB2p(e) {
   theB2PointHelper.mousemove(e)
 
   if (theB2PointHelper.isDragging()) {
@@ -226,6 +225,6 @@ function mousemove_b2p(e) {
 
 let theB2Point = document.getElementById("s-b2-point")
 let theB2PointHelper = new PointerMoveHelper("s-b2-point")
-theB2Point.addEventListener("mousedown", mousedown_b2p)
-theB2Point.addEventListener("mousemove", mousemove_b2p)
-theB2Point.addEventListener("mouseup", mouseup_b2p)
+theB2Point.addEventListener("mousedown", mousedownForB2p)
+theB2Point.addEventListener("mousemove", mousemoveForB2p)
+theB2Point.addEventListener("mouseup", mouseupForB2p)
