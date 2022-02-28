@@ -33,17 +33,20 @@ let svgRoot = document.getElementById("svg-root")
 svgRoot.addEventListener("mousemove", mousemoveForSvgContainer)
 ///////////////////////////////////////////////////////////////////////////////
 
-class PointerMoveHelper {
+class ElementMoveHelper {
   constructor(nodeTag) {
     this.mousePos = {x:0, y:0}
     this.offsetX = 0
     this.offsetY = 0
     this.dragging = false
-    this.thePointer = document.getElementById(nodeTag)
+    this.theElement = document.getElementById(nodeTag)
   }
 
   mousedown(e) {
     e.preventDefault()
+    // Check the event's properties here
+    //  https://www.w3school.com.cn/jsref/obj_event.asp
+    console.log(`${e.target.id} is on the event of ${e.type}`)
     this.mousePos.x = e.clientX - this.offsetX
     this.mousePos.y = e.clientY - this.offsetY
     this.dragging = true
@@ -56,7 +59,7 @@ class PointerMoveHelper {
       e.preventDefault()
       this.offsetX = e.clientX - this.mousePos.x
       this.offsetY = e.clientY - this.mousePos.y
-      this.thePointer.style.transform = `translate(${this.offsetX}px, ${this.offsetY}px)`
+      this.theElement.style.transform = `translate(${this.offsetX}px, ${this.offsetY}px)`
     }
   }
   isDragging() {
@@ -75,7 +78,7 @@ function mousemoveForCircle(e) {
 }
 
 let theCircle = document.getElementById("s-circle")
-let theCircleHelper = new PointerMoveHelper("s-circle")
+let theCircleHelper = new ElementMoveHelper("s-circle")
 theCircle.addEventListener("mousedown", mousedownForCircle)
 theCircle.addEventListener("mousemove", mousemoveForCircle)
 theCircle.addEventListener("mouseup", mouseupForCircle)
@@ -168,7 +171,7 @@ function mousemoveForB3p1(e) {
 }
 
 let theB3Point1= document.getElementById("s-b3-point1")
-let theB3P1Helper = new PointerMoveHelper("s-b3-point1")
+let theB3P1Helper = new ElementMoveHelper("s-b3-point1")
 theB3Point1.addEventListener("mousedown", mousedownForB3p1)
 theB3Point1.addEventListener("mousemove", mousemoveForB3p1)
 theB3Point1.addEventListener("mouseup", mouseupForB3p1)
@@ -191,7 +194,7 @@ function mousemoveForB3p2(e) {
 }
 
 let theB3Point2= document.getElementById("s-b3-point2")
-let theB3P2Helper = new PointerMoveHelper("s-b3-point2")
+let theB3P2Helper = new ElementMoveHelper("s-b3-point2")
 theB3Point2.addEventListener("mousedown", mousedownForB3p2)
 theB3Point2.addEventListener("mousemove", mousemoveForB3p2)
 theB3Point2.addEventListener("mouseup", mouseupForB3p2)
@@ -224,7 +227,7 @@ function mousemoveForB2p(e) {
 }
 
 let theB2Point = document.getElementById("s-b2-point")
-let theB2PointHelper = new PointerMoveHelper("s-b2-point")
+let theB2PointHelper = new ElementMoveHelper("s-b2-point")
 theB2Point.addEventListener("mousedown", mousedownForB2p)
 theB2Point.addEventListener("mousemove", mousemoveForB2p)
 theB2Point.addEventListener("mouseup", mouseupForB2p)
